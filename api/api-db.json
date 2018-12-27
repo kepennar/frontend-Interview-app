@@ -1,0 +1,24 @@
+{
+  "beers": [
+    {
+      "uuid": "18a4c2dc-ef9a-4430-9dc7-c3c63c70e7a1",
+      "name": "Brewdog",
+      "ibu": "30",
+      "score": 5.9523809523809526,
+      "nbRate": 21
+    },
+    {
+      "uuid": "76a6ea48-e39d-41f3-ad64-354e29c7f17c",
+      "name": "kwak",
+      "score": 5,
+      "nbRate": 30
+    },
+    {
+      "uuid": "56ea12d8-390c-4e05-ac03-dbdea5bedb9b",
+      "name": "Paix Dieu",
+      "ibu": "24",
+      "score": 9,
+      "nbRate": 8
+    }
+  ]
+}
