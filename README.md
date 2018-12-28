@@ -2,6 +2,8 @@
 
 ## An interview dedicated App
 
+<img src="./doc/screenshot.png" alt="Follow-Beers screenshot" />
+
 ### Presentation
 
 **Follow Beers** is a functional app. It's composed by a Node.js API and a React front
