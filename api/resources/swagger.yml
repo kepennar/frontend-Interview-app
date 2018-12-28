@@ -37,7 +37,7 @@ paths:
                   }
       responses:
         "200":
-          description: Successful response. Return the updated beers list
+          description: Successful response. Return the newly created beer
 
   /beers/{beerId}:
     get:
@@ -107,4 +107,4 @@ paths:
                   }
       responses:
         "200":
-          description: Successful response. Return the updated beers list
+          description: Successful response. Return the updated beer

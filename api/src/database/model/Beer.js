@@ -38,10 +38,11 @@ module.exports = {
   },
   async add(beer) {
     await beerSchema.validate(beer);
-    return db
-      .get(COLLECTION_NAME)
-      .push({ uuid: uuidV4(), score: 0, nbRate: 0, ...beer })
+    const newBeer = { uuid: uuidV4(), score: 0, nbRate: 0, ...beer };
+    db.get(COLLECTION_NAME)
+      .push(newBeer)
       .write();
+    return newBeer;
   },
   async update(uuid, beer) {
     return db
@@ -60,7 +61,7 @@ module.exports = {
     await rateSchema.validate(rate);
     const { nbRate, score } = beerToRate;
     const newNbRate = nbRate + 1;
-    await this.update(uuid, {
+    return await this.update(uuid, {
       score: (score * nbRate + rate.score) / newNbRate,
       nbRate: newNbRate
     });
