@@ -11,5 +11,6 @@ export const rootReducer = combineReducers({
 export default function* rootSaga() {
   yield fork(BeersSagas.fetchBeersIfNotWatcher);
   yield fork(BeersSagas.fetchBeersWatcher);
+  yield fork(BeersSagas.setBeerRateWatcher);
   yield fork(BeersSagas.createBeersWatcher);
 }
