@@ -1,5 +1,5 @@
 import React from "react";
-
+import PropTypes from "prop-types";
 import styles from "./Rate.module.scss";
 
 export const Rate = ({ onRate, setNewRate, beer }) => (
@@ -12,12 +12,18 @@ export const Rate = ({ onRate, setNewRate, beer }) => (
     <div
       id="2"
       className={styles.happy}
-      onClick={event => console.log(onRate(event.target.id))}
+      onClick={event => setNewRate(onRate(event.target.id), beer)}
     />
     <div
       id="3"
       className={styles.sad}
-      onClick={event => console.log(onRate(event.target.id))}
+      onClick={event => setNewRate(onRate(event.target.id), beer)}
     />
   </div>
 );
+
+Rate.propTypes = {
+  onRate: PropTypes.func.isRequired,
+  setNewRate: PropTypes.func.isRequired,
+  beer: PropTypes.object.isRequired
+};
