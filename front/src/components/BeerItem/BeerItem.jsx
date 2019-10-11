@@ -9,11 +9,14 @@ export const BeerItem = ({ beer }) => {
     let rate = {};
     switch (entryVal) {
       case "1":
-        return (rate.score = 9);
+        rate.score = 9;
+        break;
       case "2":
-        return (rate.score = 6);
+        rate.score = 6;
+        break;
       case "3":
-        return (rate.score = 3);
+        rate.score = 3;
+        break;
       default:
         console.log("Bad switch case in onRate function");
     }

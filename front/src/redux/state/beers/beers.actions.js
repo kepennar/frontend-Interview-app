@@ -35,3 +35,8 @@ export const setNewRate = (rate, beer) => ({
   rate,
   beer
 });
+
+export const setNewRateSuccess = beer => ({
+  type: BeerActionTypes.BEERS_SET_RATE_SUCCESS,
+  beer
+});

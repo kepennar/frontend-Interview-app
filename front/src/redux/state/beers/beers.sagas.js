@@ -7,7 +7,7 @@ import {
   fetchBeersSuccess,
   setBeers,
   setNewlyCreatedBeer,
-  setNewRate
+  setNewRateSuccess
 } from "./beers.actions";
 import { BeerActionTypes } from "./beers.model";
 import { beerItemsSelector } from "./beers.selectors";
@@ -54,8 +54,12 @@ export function* createBeersWatcher() {
 }
 
 function* setBeerRateWorker({ beer, rate }) {
-  const { data } = yield call(postBeerRate, beer, rate);
-  yield put(setNewRate(data));
+  try {
+    const { data } = yield call(postBeerRate, beer, rate);
+    yield put(setNewRateSuccess(data));
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export function* setBeerRateWatcher() {
