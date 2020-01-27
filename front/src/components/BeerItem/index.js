@@ -1,1 +1,1 @@
-export { BeerItem } from "./BeerItem";
+export { default } from "./BeerItem.container";

@@ -8,4 +8,5 @@ const LazyBeerForm = () => (
     <LazyForm />
   </Suspense>
 );
+
 export default LazyBeerForm;

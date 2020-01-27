@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Provider } from "react-redux";
 import { Router, Route } from "react-router-dom";
-
 import history from "./history";
 import { store } from "./redux";
 import { Header } from "./components/Header";

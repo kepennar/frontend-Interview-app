@@ -25,6 +25,16 @@ export const createBeer = beer => ({
   beer
 });
 
+export const setUpdatedBeer = beer => ({
+  type: BeerActionTypes.BEERS_SET_UPDATED_BEER,
+  beer
+});
+
+export const updateBeerRate = payload => ({
+  type: BeerActionTypes.BEERS_UPDATE_BEER_RATE,
+  payload
+});
+
 export const setNewlyCreatedBeer = beer => ({
   type: BeerActionTypes.BEERS_SET_NEW,
   beer

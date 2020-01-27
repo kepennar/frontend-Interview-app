@@ -16,6 +16,8 @@ export const beersReducer = (state = defaultBeersState, action) => {
       return { ...state, loading: false };
     case BeerActionTypes.BEERS_SET_NEW:
       return { ...state, newItems: [...state.newItems, action.beer] };
+    case BeerActionTypes.BEERS_SET_UPDATED_BEER:
+      return { ...state, items: state.items.map(beer => beer.uuid === action.beer.uuid ? action.beer : beer) };
     default:
       return state;
   }
