@@ -9,7 +9,7 @@ const RenderCount = () => {
   });
 
   return(
-    <div>
+    <div className="renderCount">
       {count.current}
     </div>
   );
