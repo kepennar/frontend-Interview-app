@@ -1,0 +1,38 @@
+Bonnes pratiques d'archi et de code :
+-------------------------------
+- Utilisation d'ES6 et des fonctions composants
+- Les fichiers sont séparés en fonctions de leur utilité : composants != pages != redux etc..
+- Les composants sont dans des dossiers leurs correspondants et leurs enfants sont dans des dossiers spécifiques à l'intérieur de ceux-ci
+- Le nommage des fichiers (.jsx pour du composant React, .js lorsque la syntaxe JSX n'est pas utilisée...)
+- Dans redux, séparations des actions, reducer, selector... en fichiers séparés
+- Doc suffisante pour lancer docker ou npm
+- Images utilisées dans le code dans src/assets/ et pas dans public/
+- Noms des variables et fonctions bien choisis : explicites et compréhensible (pas de payload dans les actions/reducer par exemple)
+- Variables scss globales en plus des modules propres aux composants
+-------------------------------
+Erreurs d'archi et de code :
+-------------------------------
+- Dossier doc/ ne contenant pas de doc mais ueniquement un screenshot
+- Inconstance des export default / export const
+- Rate/index.js inutilisé
+- Fichier size.scss mais variable "size" instanciée dans des fichiers modules
+- Fichiers scss mais pas d'utilisation / optimisation de la syntaxe
+- Nommage css peu précis pouvant porter à confusion
+- onRate parameter mais pas utilisé (lié à l'exercice cependant)
+- Présence de bloc de code en commentaires (input.module.scss)
+- API pas vraiment propre à redux et pourrait donc avoir son propre dossier
+- Pas de validation de types, même si JavaScript
+-------------------------------
+Pistes d'amélioration :
+-------------------------------
+- Mise en place d'ESLint / Styleint / TypeScript ?
+- Mise en place de Tests unitaires et E2E (si un runner le permet)
+- Mise en place d'un Jenkinsfile ou gitlab-ci pour automatiser les builds
+- Améliorer la structure du dossier components, l'arbre "parents => enfants" n'est pas toujours respecté. Possibilité de grouper des composants pour éviter un cafouillis si leur nombre augmente
+- Créer des hooks ou utiliser les plus récents de redux pour enlever les mapDispatchToProps et compose etc...
+- App et index peuvent fusionner => plus de fichier css
+- Passer a des imports 'webpack style' (import 'assets/file.xy') au lieu de (import '../../../../assets)
+- Est-ce que les index.js ont besoin d'être autant utilisés ?
+- 404 pas vraiment cassé mais pas implementé au niveau des routes
+- Routage a séparer de App.jsx
+- Reducer centralisable permettant d'utiliser des fonctions séparés (alléger la structure en switch + permet d'être plus précis avec les param)

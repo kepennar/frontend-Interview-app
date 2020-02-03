@@ -1,1 +1,1 @@
-export { Rate } from './Rate';
+export { default } from './Rate';

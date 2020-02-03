@@ -1,7 +1,7 @@
 import React from "react";
 
 import styles from "./BeerItem.module.scss";
-import {Rate} from "./Rate";
+import Rate from "./Rate";
 // import RenderCount from "../common/RenderCount";
 
 const BeerItem = ({ beer: { uuid, name, ibu, score }, setBeerRate }) => (
