@@ -1,21 +1,18 @@
 import { connect } from "react-redux";
 import { compose, lifecycle } from "recompose";
-import { fetchBeersIfNot, allBeersSelector } from "../../redux/state/beers";
+import { fetchBeersIfNot, beerItemsSelector } from "../../redux/state/beers";
 import { List } from "./List.component";
 
 const mapStateToProps = state => {
   return {
     loading: state.beers.loading,
-    beers: allBeersSelector(state)
+    beers: beerItemsSelector(state)
   };
 };
 
 const mapDispatchToProps = { fetchBeersIfNot };
 
-const connectList = connect(
-  mapStateToProps,
-  mapDispatchToProps
-);
+const connectList = connect(mapStateToProps, mapDispatchToProps);
 
 const withDidMountList = lifecycle({
   componentDidMount() {
@@ -23,7 +20,4 @@ const withDidMountList = lifecycle({
   }
 });
 
-export default compose(
-  connectList,
-  withDidMountList
-)(List);
+export default compose(connectList, withDidMountList)(List);
