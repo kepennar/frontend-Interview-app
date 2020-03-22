@@ -2,6 +2,7 @@ import { BeerActionTypes } from "./beers.model";
 
 const defaultBeersState = {
   items: [],
+  newItems: [],
   loading: false
 };
 export const beersReducer = (state = defaultBeersState, action) => {
@@ -21,6 +22,7 @@ export const beersReducer = (state = defaultBeersState, action) => {
         items: state.items.map(beer => {
           if (beer.uuid === action.beerId) {
             beer.score = action.score;
+            beer.nbRate = beer.nbRate + 1;
           }
           return beer;
         })
@@ -28,6 +30,7 @@ export const beersReducer = (state = defaultBeersState, action) => {
     case BeerActionTypes.BEERS_SET_NEW:
       return {
         ...state,
+        newItems: [...state.newItems, action.beer],
         items: [...state.items, action.beer]
       };
     default:
