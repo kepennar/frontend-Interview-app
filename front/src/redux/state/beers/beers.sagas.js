@@ -45,10 +45,8 @@ function* createBeersWorker({ beer }) {
     history.push("/");
     yield put(setNewlyCreatedBeer(data));
     yield put(fetchBeersSuccess());
-    yield toastr.success("Beer created");
   } catch (e) {
     yield put(fetchBeersFailure());
-    yield toastr.error("Error beer not created");
   }
 }
 
@@ -62,10 +60,8 @@ export function* rateBeerWatcher() {
 
 function* rateBeerWorker({ beerId, score }) {
   try {
-    yield put({ type: BeerActionTypes.LOADING });
     const { data } = yield call(rateBeer, beerId, score);
     yield put({ type: BeerActionTypes.BEER_UPDATE_RATE, beerId, score: data.score });
-    yield put({ type: BeerActionTypes.LOADING });
     yield toastr.success("Beer rated");
   } catch (e) {
     yield put({ type: BeerActionTypes.LOADING });
