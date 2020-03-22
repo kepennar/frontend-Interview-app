@@ -53,7 +53,7 @@ export function* createBeersWatcher() {
 }
 
 export function* rateBeerWatcher() {
-  yield takeEvery(BeerActionTypes.BEERS_SET_RATE, rateBeerWorker);
+  yield takeEvery(BeerActionTypes.RATE_BEER, rateBeerWorker);
 }
 
 function* rateBeerWorker({ beerId, score }) {

@@ -5,8 +5,7 @@ import { BeerActionTypes } from "../../../redux/state/beers/beers.model";
 
 export const Rate = ({ beerId }) => {
   const dispatch = useDispatch();
-  const onRate = score => () =>
-    dispatch({ type: BeerActionTypes.BEERS_SET_RATE, beerId, score });
+  const onRate = score => () => dispatch({ type: BeerActionTypes.RATE_BEER, beerId, score });
 
   return (
     <div className={styles.rate}>
