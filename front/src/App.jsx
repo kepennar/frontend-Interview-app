@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Provider } from "react-redux";
 import { Router, Route } from "react-router-dom";
+import ReduxToastr from "react-redux-toastr";
 
 import history from "./history";
 import { store } from "./redux";
@@ -18,6 +19,15 @@ class App extends Component {
           <div className="App">
             <header className="App-header">
               <Header />
+              <ReduxToastr
+                timeOut={3000}
+                newestOnTop={false}
+                preventDuplicates
+                position="top-right"
+                transitionIn="fadeIn"
+                transitionOut="fadeOut"
+                closeOnToastrClick
+              />
             </header>
             <div className="App-content">
               <Route path="/" exact component={List} />

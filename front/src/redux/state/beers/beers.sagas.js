@@ -1,6 +1,8 @@
 import { put, call, takeEvery, select } from "redux-saga/effects";
 import history from "../../../history";
 import { getBeers, postBeer, rateBeer } from "./beers.api";
+import { toastr } from "react-redux-toastr";
+
 import {
   fetchBeers,
   fetchBeersFailure,
@@ -43,8 +45,10 @@ function* createBeersWorker({ beer }) {
     history.push("/");
     yield put(setNewlyCreatedBeer(data));
     yield put(fetchBeersSuccess());
+    yield toastr.success("Beer created");
   } catch (e) {
     yield put(fetchBeersFailure());
+    yield toastr.error("Error beer not created");
   }
 }
 
@@ -62,8 +66,9 @@ function* rateBeerWorker({ beerId, score }) {
     const { data } = yield call(rateBeer, beerId, score);
     yield put({ type: BeerActionTypes.BEER_UPDATE_RATE, beerId, score: data.score });
     yield put({ type: BeerActionTypes.LOADING });
+    yield toastr.success("Beer rated");
   } catch (e) {
     yield put({ type: BeerActionTypes.LOADING });
-    console.log(e);
+    yield toastr.error("Error beer not rated");
   }
 }
