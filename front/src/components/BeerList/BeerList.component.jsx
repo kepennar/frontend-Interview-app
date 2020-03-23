@@ -6,7 +6,9 @@ import styles from "./BeerList.module.scss";
 
 export const BeerList = ({ beers, loading }) => (
   <div className={styles.Beerlist}>
-    {!loading && beers.map(beer => <BeerItem key={beer.uuid} beer={beer} />)}
+    {beers.map(beer => (
+      <BeerItem key={beer.uuid} beer={beer} />
+    ))}
     {loading && <Loader />}
   </div>
 );

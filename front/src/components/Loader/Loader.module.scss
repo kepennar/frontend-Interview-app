@@ -1,6 +1,9 @@
 .logo {
   animation: spin infinite 3s ease-in-out;
-  height: 40vmin;
+  height: 20vmin;
+  position: absolute;
+  top: 20px;
+  right: 20px;
 }
 
 @keyframes spin {

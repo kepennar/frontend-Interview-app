@@ -14,6 +14,8 @@ export const beersReducer = (state = defaultBeersState, action) => {
     case BeerActionTypes.BEERS_FETCH_SUCCESS:
     case BeerActionTypes.BEERS_FETCH_FAILURE:
       return { ...state, loading: false };
+    case BeerActionTypes.LOADING:
+      return { ...state, loading: !state.loading };
     case BeerActionTypes.BEER_UPDATE_RATE:
       return {
         ...state,
