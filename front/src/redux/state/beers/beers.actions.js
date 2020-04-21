@@ -29,3 +29,8 @@ export const setNewlyCreatedBeer = beer => ({
   type: BeerActionTypes.BEERS_SET_NEW,
   beer
 });
+
+export const editBeer = beer => ({
+  type: BeerActionTypes.BEERS_FETCH,
+  beer
+})
