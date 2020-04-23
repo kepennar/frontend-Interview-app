@@ -18,10 +18,13 @@ export const beersReducer = (state = defaultBeersState, action) => {
       return { ...state, newItems: [...state.newItems, action.beer] };
     case BeerActionTypes.BEERS_EDIT:
       const filter = (value) => value.uuid !== action.beer.uuid;
-      return { ...state, items: [...state.items.filter(filter), action.beer] };
-    case BeerActionTypes.BEERS_SORT:
-      const sort = (val1, val2) => val1.score > val2.score ? -1 : (val1.score < val2.score ? 1 : 0);
-      return { ...state, items: state.items.sort(sort) };
+      const find = (value) => value.uuid === action.beer.uuid;
+
+      // In both item arrays : If action.beer is present, remove old version and add new one, else keep the current array
+      const f_items = state.items.find(find) ? [...state.items.filter(filter), action.beer] : state.items;
+      const f_newItems = state.newItems.find(find) ? [...state.newItems.filter(filter), action.beer] : state.newItems;
+
+      return { ...state, items: f_items, newItems: f_newItems };
     default:
       return state;
   }

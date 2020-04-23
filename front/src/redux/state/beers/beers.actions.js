@@ -34,7 +34,3 @@ export const editBeer = beer => ({
   type: BeerActionTypes.BEERS_EDIT,
   beer
 })
-
-export const sortBeers = () => ({
-  type: BeerActionTypes.BEERS_SORT
-})

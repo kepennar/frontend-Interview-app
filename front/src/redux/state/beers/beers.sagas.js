@@ -27,7 +27,6 @@ function* fetchBeersWorker() {
   try {
     const { data } = yield call(getBeers);
     yield put(setBeers(data));
-    yield put(sortBeers());
     yield put(fetchBeersSuccess());
   } catch (e) {
     yield put(setBeers([]));
@@ -57,7 +56,6 @@ export function* createBeersWatcher() {
 function* editBeersWorker({ beer }) {
   try {
     const { data } = yield call(putBeer, beer);
-    yield put(sortBeers());
     yield put(fetchBeersSuccess());
   } catch (e) {
     yield put(fetchBeersFailure());
