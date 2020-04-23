@@ -31,6 +31,6 @@ export const setNewlyCreatedBeer = beer => ({
 });
 
 export const editBeer = beer => ({
-  type: BeerActionTypes.BEERS_FETCH,
+  type: BeerActionTypes.BEERS_EDIT,
   beer
 })

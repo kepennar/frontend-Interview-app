@@ -56,7 +56,7 @@ export function* createBeersWatcher() {
 function* editBeersWorker({ beer }) {
   try {
     const { data } = yield call(putBeer, beer);
-    yield put(editBeer(data));
+    /* yield put(editBeer(data)); */
     yield put(fetchBeersSuccess());
   } catch (e) {
     yield put(fetchBeersFailure());
