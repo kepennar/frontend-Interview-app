@@ -19,6 +19,9 @@ export const beersReducer = (state = defaultBeersState, action) => {
     case BeerActionTypes.BEERS_EDIT:
       const filter = (value) => value.uuid !== action.beer.uuid;
       return { ...state, items: [...state.items.filter(filter), action.beer] };
+    case BeerActionTypes.BEERS_SORT:
+      const sort = (val1, val2) => val1.score > val2.score ? -1 : (val1.score < val2.score ? 1 : 0);
+      return { ...state, items: state.items.sort(sort) };
     default:
       return state;
   }
