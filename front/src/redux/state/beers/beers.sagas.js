@@ -6,8 +6,7 @@ import {
   fetchBeersFailure,
   fetchBeersSuccess,
   setBeers,
-  setNewlyCreatedBeer,
-  sortBeers
+  setNewlyCreatedBeer
 } from "./beers.actions";
 import { BeerActionTypes } from "./beers.model";
 import { beerItemsSelector } from "./beers.selectors";
@@ -56,7 +55,7 @@ export function* createBeersWatcher() {
 function* editBeersWorker({ beer }) {
   try {
     const { data } = yield call(putBeer, beer);
-    yield put(fetchBeersSuccess());
+    yield put(fetchBeers())
   } catch (e) {
     yield put(fetchBeersFailure());
   }
