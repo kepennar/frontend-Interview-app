@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import styles from './Rate.module.scss';
@@ -9,7 +9,7 @@ const RATES = {
   'inLove': 10,
 };
 
-export class Rate extends Component {
+export class Rate extends PureComponent {
   static propTypes = {
     rateBeer: PropTypes.func.isRequired,
   };
