@@ -64,7 +64,7 @@ const BeerForm = ({ loading, createBeer }) => (
           <div className={styles.submitButton}>
             <Button
               type="submit"
-              disabled={errors.name || errors.ibu || isSubmitting}
+              disabled={!!errors.name || !!errors.ibu || isSubmitting}
               text="Create"
             />
           </div>

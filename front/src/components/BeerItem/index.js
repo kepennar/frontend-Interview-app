@@ -1,1 +1,1 @@
-export { BeerItem } from "./BeerItem";
+export { BeerItem } from "./BeerItem.component";
