@@ -1,6 +1,6 @@
 import { put, call, takeEvery, select } from "redux-saga/effects";
 import history from "../../../history";
-import { getBeers, postBeer, postBeerRate } from "./beers.api";
+import { getBeers, postBeer, postBeerRate, putBeer, deleteBeer} from "./beers.api";
 import {
   fetchBeers,
   fetchBeersFailure,
@@ -10,6 +10,10 @@ import {
   rateBeerSuccess,
   rateBeerFailure,
   setNewlyRatedBeer,
+  updateBeerSuccess,
+  updateBeerFailure,
+  deleteBeerSuccess,
+  deleteBeerFailure,
 } from "./beers.actions";
 import { BeerActionTypes } from "./beers.model";
 import { beerItemsSelector } from "./beers.selectors";
@@ -72,4 +76,32 @@ function* rateBeersWorker({ beerID, score }) {
 
 export function* rateBeersWatcher() {
   yield takeEvery(BeerActionTypes.BEERS_RATE, rateBeersWorker);
+}
+
+function* updateBeerWorker({ beer }) {
+  try {
+    const { data } = yield call(putBeer, beer);
+    history.push("/");
+    yield put(updateBeerSuccess(data.uuid));
+  } catch (e) {
+    yield put(updateBeerFailure());
+  }
+}
+
+export function* updateBeerWatcher() {
+  yield takeEvery(BeerActionTypes.BEERS_UPDATE, updateBeerWorker);
+}
+
+function* deleteBeerWorker({ beer }) {
+  try {
+    yield call(deleteBeer, beer.uuid);
+    history.push("/");
+    yield put(deleteBeerSuccess());
+  } catch (e) {
+    yield put(deleteBeerFailure(beer));
+  }
+}
+
+export function* deleteBeerWatcher() {
+  yield takeEvery(BeerActionTypes.BEERS_DELETE, deleteBeerWorker);
 }

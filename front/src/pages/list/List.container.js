@@ -2,6 +2,8 @@ import { connect } from "react-redux";
 import { compose, lifecycle } from "recompose";
 import {
   rateBeer,
+  updateBeer,
+  deleteBeer,
   fetchBeersIfNot,
   allBeersSelector,
 } from "../../redux/state/beers";
@@ -17,6 +19,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = {
   fetchBeersIfNot,
   rateBeer,
+  setBeer: updateBeer,
+  deleteBeer,
 };
 
 const connectList = connect(

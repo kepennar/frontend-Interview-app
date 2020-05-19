@@ -10,14 +10,18 @@ export class BeerList extends Component {
   static propTypes = {
     beers: PropTypes.arrayOf(PropTypes.object).isRequired,
     loading: PropTypes.bool,
+    setBeer: PropTypes.func,
     rateBeer: PropTypes.func,
+    deleteBeer: PropTypes.func,
   };
 
   render() {
     const {
       beers,
       loading,
+      setBeer,
       rateBeer,
+      deleteBeer,
     } = this.props;
 
     return (
@@ -29,7 +33,9 @@ export class BeerList extends Component {
               <BeerItem
                 key={beer.uuid}
                 beer={beer}
+                setBeer={setBeer}
                 rateBeer={(rate) => rateBeer(beer.uuid, rate)}
+                deleteBeer={deleteBeer}
               />
             );
           })

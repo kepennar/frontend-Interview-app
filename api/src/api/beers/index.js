@@ -60,6 +60,21 @@ beersRouter.put("/:uuid", async ctx => {
   }
 });
 
+beersRouter.delete("/:uuid", async ctx => {
+  const uuid = ctx.params.uuid;
+  const beerToUpdate = ctx.request.body;
+  try {
+    ctx.body = await beerModel.delete(uuid);
+  } catch (err) {
+    ctx.throw(
+      new ApiError(err, {
+        message: `Error deleting beer with uuid "${uuid}"`,
+        statusCode: 400
+      })
+    );
+  }
+});
+
 beersRouter.post("/:uuid/rate", async ctx => {
   const uuid = ctx.params.uuid;
   const rate = ctx.request.body;

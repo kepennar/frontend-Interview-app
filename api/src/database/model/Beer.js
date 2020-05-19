@@ -51,6 +51,12 @@ module.exports = {
       .assign({ ...beer })
       .write();
   },
+  async delete(uuid) {
+    return db
+      .get(COLLECTION_NAME)
+      .remove({ uuid })
+      .write();
+  },
   async rate(uuid, rate) {
     const beerToRate = await this.get(uuid);
     if (!beerToRate) {

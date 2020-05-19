@@ -10,6 +10,8 @@ export class List extends Component {
   static propTypes = {
     loading: PropTypes.bool,
     rateBeer: PropTypes.func,
+    setBeer: PropTypes.func,
+    deleteBeer: PropTypes.func,
     beers: PropTypes.arrayOf(PropTypes.object).isRequired,
   };
 
@@ -17,7 +19,9 @@ export class List extends Component {
     const {
       beers,
       loading,
+      setBeer,
       rateBeer,
+      deleteBeer,
     } = this.props;
 
     return (
@@ -26,7 +30,9 @@ export class List extends Component {
           <BeerList
             beers={beers}
             loading={loading}
+            setBeer={setBeer}
             rateBeer={rateBeer}
+            deleteBeer={deleteBeer}
           />
         </div>
         <div className={styles.addBeer}>

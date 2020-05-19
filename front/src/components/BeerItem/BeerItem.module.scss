@@ -1,8 +1,10 @@
 @import "../../styles/colors";
 
+$bg-color: transparentize($color-secondary, 0.3);
+
 .beerItem {
   align-items: center;
-  background-color: transparentize($color-secondary, 0.3);
+  background-color: $bg-color;
   border-radius: 5px;
   color: $color-primary;
   display: flex;
@@ -19,6 +21,31 @@
   display: flex;
   flex: 1;
   flex-basis: 40%;
+
+  color: $color-primary;
+
+  // Reseting input text style
+  border:none;
+  background-image:none;
+  background-color:transparent;
+  box-shadow: none;
+
+  &:focus {
+    background-color: lighten($bg-color, 25);
+  }
+}
+
+.loading {
+  font-size: 1rem;
+  color: $color-primary;
+}
+
+.label {
+  font-size: 1rem;
+  display: flex;
+  flex: 1;
+  flex-basis: 5%;
+  color: $color-primary;
 }
 
 .ibu {
@@ -26,6 +53,18 @@
   display: flex;
   flex: 1;
   flex-basis: 15%;
+
+  color: $color-primary;
+
+  // Reseting input text style
+  border:none;
+  background-image:none;
+  background-color:transparent;
+  box-shadow: none;
+
+  &:focus {
+    background-color: lighten($bg-color, 25);
+  }
 }
 
 .score {

@@ -48,3 +48,27 @@ export const setNewlyRatedBeer = beer => ({
   type: BeerActionTypes.BEERS_SET_RATE,
   beer,
 });
+
+export const updateBeer = beer =>  ({
+  type: BeerActionTypes.BEERS_UPDATE,
+  beer,
+});
+export const updateBeerSuccess = (beerID) => ({
+  type: BeerActionTypes.BEERS_UPDATE_SUCCESS,
+  beerID,
+});
+export const updateBeerFailure = () => ({
+  type: BeerActionTypes.BEERS_UPDATE_FAILURE,
+});
+
+export const deleteBeer = beer =>  ({
+  type: BeerActionTypes.BEERS_DELETE,
+  beer,
+});
+export const deleteBeerSuccess = () => ({
+  type: BeerActionTypes.BEERS_DELETE_SUCCESS,
+});
+export const deleteBeerFailure = (beer) => ({
+  type: BeerActionTypes.BEERS_DELETE_FAILURE,
+  beer
+});

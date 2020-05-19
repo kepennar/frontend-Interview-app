@@ -13,4 +13,6 @@ export default function* rootSaga() {
   yield fork(BeersSagas.fetchBeersWatcher);
   yield fork(BeersSagas.createBeersWatcher);
   yield fork(BeersSagas.rateBeersWatcher);
+  yield fork(BeersSagas.updateBeerWatcher);
+  yield fork(BeersSagas.deleteBeerWatcher);
 }

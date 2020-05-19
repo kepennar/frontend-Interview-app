@@ -5,6 +5,9 @@ const defaultBeersState = {
   loading: false,
 };
 export const beersReducer = (state = defaultBeersState, action) => {
+  let updatedItems;
+  let index;
+
   switch (action.type) {
     case BeerActionTypes.BEERS_SET:
       return { ...state, items: action.beers };
@@ -19,20 +22,45 @@ export const beersReducer = (state = defaultBeersState, action) => {
     case BeerActionTypes.BEERS_SET_NEW:
       return { ...state, items: [...state.items, action.beer] };
 
-    /**
-     * No change if success or failure. the score will not change.
-     */
-    // case BeerActionTypes.BEERS_RATE:
-    // case BeerActionTypes.BEERS_RATE_SUCCESS:
-    // case BeerActionTypes.BEERS_RATE_FAILURE:
-    //   return { ...state };
+    case BeerActionTypes.BEERS_UPDATE:
+      updatedItems = [ ...state.items ];
+      index = updatedItems.findIndex(item => item.uuid === action.beer.uuid);
+      updatedItems[index] = action.beer;
+      updatedItems[index].loading = true;
+      return {
+        ...state,
+        items: updatedItems,
+      };
+    case BeerActionTypes.BEERS_UPDATE_SUCCESS:
+      updatedItems = [ ...state.items ];
+      index = updatedItems.findIndex(item => item.uuid === action.beerID);
+      updatedItems[index].loading = false;
+      return {
+        ...state,
+        items: updatedItems,
+      };
+
+    case BeerActionTypes.BEERS_DELETE:
+      updatedItems = [ ...state.items ];
+      index = updatedItems.findIndex(item => item.uuid === action.beer.uuid);
+      updatedItems.splice(index, 1);
+      return {
+        ...state,
+        items: updatedItems,
+      };
+
+    case BeerActionTypes.BEERS_DELETE_FAILURE:
+      return { ...state, items: [...state.items, action.beer] };
 
     case BeerActionTypes.BEERS_SET_RATE:
-      const updatedItems = [ ...state.items ];
-      const beerIndex = updatedItems.findIndex(item => item.uuid === action.beer.uuid);
-      updatedItems[beerIndex] = action.beer;
+      updatedItems = [ ...state.items ];
+      index = updatedItems.findIndex(item => item.uuid === action.beer.uuid);
+      updatedItems[index] = action.beer;
 
-      return { ...state, items: updatedItems };
+      return {
+        ...state,
+        items: updatedItems
+      };
 
     default:
       return state;
