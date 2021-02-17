@@ -4,9 +4,11 @@ import { Loader } from "../Loader";
 
 import styles from "./BeerList.module.scss";
 
-export const BeerList = ({ beers, loading }) => (
+export const BeerList = ({ beers, loading, rateClickHandler }) => {
+  return(
   <div className={styles.Beerlist}>
-    {!loading && beers.map(beer => <BeerItem key={beer.uuid} beer={beer} />)}
+    {!loading && beers.map(beer => <BeerItem key={beer.uuid} beer={beer} rateClickHandler={rateClickHandler.bind(null, beer.uuid)}/>)}
     {loading && <Loader />}
   </div>
 );
+  }
