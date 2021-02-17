@@ -5,27 +5,14 @@ import { Button } from "../../components/Button";
 
 import styles from "./Form.module.scss";
 
-const BeerForm = ({ loading, createBeer }) => (
+const BeerForm = ({inputChecker, submitHandler }) => {
+  return(
   <div className={styles.form}>
     <h2>Add a beer</h2>
     <Formik
       initialValues={{ name: "", ibu: "" }}
-      validate={values => {
-        let errors = {};
-        if (!values.name) {
-          errors.name = "Required";
-        }
-
-        if (!values.ibu) {
-          errors.ibu = "Required";
-        } else if (isNaN(parseInt(values.ibu, 10))) {
-          errors.ibu = "IBU should be a number";
-        }
-        return errors;
-      }}
-      onSubmit={(values, { setSubmitting }) => {
-        createBeer(values);
-      }}
+      validate={inputChecker} 
+      onSubmit={submitHandler}
     >
       {({
         values,
@@ -73,5 +60,6 @@ const BeerForm = ({ loading, createBeer }) => (
     </Formik>
   </div>
 );
+}
 
 export default BeerForm;

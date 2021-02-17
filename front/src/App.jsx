@@ -3,7 +3,7 @@ import { Provider } from "react-redux";
 import { Router, Route } from "react-router-dom";
 
 import history from "./history";
-import { store } from "./redux";
+import { store } from "./redux/store";
 import { Header } from "./components/Header";
 import List from "./pages/list";
 import LazyBeerForm from "./pages/form";

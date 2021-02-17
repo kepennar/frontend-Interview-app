@@ -1,6 +1,3 @@
-export const beerItemsSelector = state => state.beers.items;
-
-export const allBeersSelector = state => [
-  ...beerItemsSelector(state),
-  ...state.beers.newItems
-];
+export const beerItemsSelector = state => {
+    return Object.values(state.beers.items);
+}

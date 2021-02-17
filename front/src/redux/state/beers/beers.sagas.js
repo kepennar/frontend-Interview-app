@@ -1,12 +1,14 @@
 import { put, call, takeEvery, select } from "redux-saga/effects";
 import history from "../../../history";
-import { getBeers, postBeer } from "./beers.api";
+import { getBeers, postBeer, postBeerRate } from "./beers.api";
 import {
   fetchBeers,
   fetchBeersFailure,
   fetchBeersSuccess,
   setBeers,
-  setNewlyCreatedBeer
+  setNewlyCreatedBeer,
+  rateBeerSuccess,
+  rateBeerFailure
 } from "./beers.actions";
 import { BeerActionTypes } from "./beers.model";
 import { beerItemsSelector } from "./beers.selectors";
@@ -18,9 +20,6 @@ function* fetchBeersIfNotWorker() {
   }
 }
 
-export function* fetchBeersIfNotWatcher() {
-  yield takeEvery(BeerActionTypes.BEERS_FETCH_IF_NOT, fetchBeersIfNotWorker);
-}
 
 function* fetchBeersWorker() {
   try {
@@ -31,10 +30,6 @@ function* fetchBeersWorker() {
     yield put(setBeers([]));
     yield put(fetchBeersFailure());
   }
-}
-
-export function* fetchBeersWatcher() {
-  yield takeEvery(BeerActionTypes.BEERS_FETCH, fetchBeersWorker);
 }
 
 function* createBeersWorker({ beer }) {
@@ -48,6 +43,28 @@ function* createBeersWorker({ beer }) {
   }
 }
 
+function* beerRateWorker({beer_id, beer_rate}) {
+  try{
+    const {data} = yield call(postBeerRate, beer_id, beer_rate);
+    yield put(rateBeerSuccess(data))
+  }catch (e){
+    yield put(rateBeerFailure(e));
+  }
+}
+
+
+export function* fetchBeersIfNotWatcher() {
+  yield takeEvery(BeerActionTypes.BEERS_FETCH_IF_NOT, fetchBeersIfNotWorker);
+}
+
+export function* fetchBeersWatcher() {
+  yield takeEvery(BeerActionTypes.BEERS_FETCH, fetchBeersWorker);
+}
+
 export function* createBeersWatcher() {
   yield takeEvery(BeerActionTypes.BEERS_CREATE, createBeersWorker);
+}
+
+export function* beerRateWatcher() {
+  yield takeEvery(BeerActionTypes.BEER_RATE, beerRateWorker);
 }
