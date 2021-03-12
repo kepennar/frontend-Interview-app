@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { compose, lifecycle } from "recompose";
-import { fetchBeersIfNot, allBeersSelector } from "../../redux/state/beers";
+import { fetchBeersIfNot, allBeersSelector, rateBeer } from "../../redux/state/beers";
 import { List } from "./List.component";
 
 const mapStateToProps = state => {
@@ -10,7 +10,7 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = { fetchBeersIfNot };
+const mapDispatchToProps = { fetchBeersIfNot, rateBeer };
 
 const connectList = connect(
   mapStateToProps,

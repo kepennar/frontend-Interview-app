@@ -5,7 +5,9 @@ const defaultBeersState = {
   newItems: [],
   loading: false
 };
+
 export const beersReducer = (state = defaultBeersState, action) => {
+
   switch (action.type) {
     case BeerActionTypes.BEERS_SET:
       return { ...state, items: action.beers };
@@ -15,7 +17,16 @@ export const beersReducer = (state = defaultBeersState, action) => {
     case BeerActionTypes.BEERS_FETCH_FAILURE:
       return { ...state, loading: false };
     case BeerActionTypes.BEERS_SET_NEW:
-      return { ...state, newItems: [...state.newItems, action.beer] };
+      return { ...state, items: [...state.items, action.beer] };
+
+    case BeerActionTypes.UPDATE_BEER_SCORE:
+      const index = state.items.findIndex(i =>  i.uuid === action.data.uuid)
+      if (index === -1) { return { ...state } }
+      
+      const newState = { ...state }
+      newState.items[index] = action.data
+      
+      return { ...newState };
     default:
       return state;
   }

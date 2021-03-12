@@ -12,4 +12,5 @@ export default function* rootSaga() {
   yield fork(BeersSagas.fetchBeersIfNotWatcher);
   yield fork(BeersSagas.fetchBeersWatcher);
   yield fork(BeersSagas.createBeersWatcher);
+  yield fork(BeersSagas.rateBeersWatcher);
 }
